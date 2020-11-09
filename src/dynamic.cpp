@@ -1,5 +1,7 @@
 #include <dynamic.h>
 
+const size_t DynamicState::INF = 1'000'000'000;
+
 DynamicState::DynamicState(char x, int k)
 : x_(x), k_(k), min_word_len_(k + 1, INF), xword_in_l_(k + 1, false) {}
 

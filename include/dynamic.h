@@ -11,10 +11,11 @@ public:
     bool is_xword_in_l(int len) const;
     char get_x() const;
     int get_k() const;
-    static const int INF = 1'000'000'000;
+    static const size_t INF;
 private:
     char x_;
     int k_;
     std::vector<size_t> min_word_len_;
     std::vector<bool> xword_in_l_;
 };
+
