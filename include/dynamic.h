@@ -11,8 +11,8 @@ public:
     bool is_xword_in_l(int len) const;
     char get_x() const;
     int get_k() const;
-private:
     static const int INF = 1'000'000'000;
+private:
     char x_;
     int k_;
     std::vector<size_t> min_word_len_;

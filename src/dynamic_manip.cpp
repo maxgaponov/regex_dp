@@ -62,6 +62,7 @@ DynamicState iteration(const DynamicState& ds) {
         if (result.is_xword_in_l(i)) {
             result.update_min_word_len(i, i);
         }
+        result.update_min_word_len(i, ds.get_min_word_len(i));
     }
     for (int i = 0; i <= k; ++i) {
         for (int j = 0; j <= k; ++j) {

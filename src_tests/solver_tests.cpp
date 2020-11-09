@@ -13,3 +13,8 @@ TEST(test_solver, simple) {
     EXPECT_EQ(solve("ab+", 'b', 1), 1);
     EXPECT_EQ(solve("aba.+", 'a', 1), 1);
 }
+
+TEST(test_solver, complex) {
+    EXPECT_THROW(solve("ab+c.aba.*.bac.+.+*a.", 'b', 2), std::domain_error);
+    EXPECT_EQ(solve("acb..bab.c.*.ab.ba.+.+*a.", 'a', 2), 4);
+}

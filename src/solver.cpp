@@ -35,5 +35,9 @@ size_t solve(const std::string& rpn_regex, char x, int k) {
     if (states.size() != 1) {
         throw std::invalid_argument("bad regex");
     }
-    return states.top().get_min_word_len(k);
+    size_t answer = states.top().get_min_word_len(k);
+    if (answer >= DynamicState::INF) {
+        throw std::domain_error("suffix is not in the regular language");
+    }
+    return answer;
 }
