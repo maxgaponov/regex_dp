@@ -19,6 +19,8 @@
 ```bash
 mkdir build
 cd build
-cmake ..
-make
+../install_deps.sh python3.6
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+make -j<num cores + 1>
+make regex_dp_coverage
 ```

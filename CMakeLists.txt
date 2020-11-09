@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 project(regex_dp)
+
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g -fprofile-arcs -ftest-coverage ${CMAKE_CXX_FLAGS_DEBUG}")
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/)
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
@@ -34,4 +37,11 @@ add_executable(regex_dp ${SOURCES})
 file(GLOB_RECURSE TEST_SOURCES src/*.cpp src_tests/*.cpp)
 add_executable(tester ${TEST_SOURCES})
 target_include_directories(tester PRIVATE "${gtest_SOURCE_DIR}/include")
-target_link_libraries(tester gtest_main)
+target_link_libraries(tester gtest_main gcov)
+target_compile_options(tester PRIVATE "--coverage")
+
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+    include(CodeCoverage)
+    setup_target_for_coverage(${PROJECT_NAME}_coverage tester coverage)
+    setup_target_for_coverage_cobertura(${PROJECT_NAME}_cobertura tester coverage --gtest_output=xml:coverage.junit.xml)
+endif()
