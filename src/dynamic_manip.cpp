@@ -24,9 +24,10 @@ DynamicState concat(const DynamicState& lhs, const DynamicState& rhs) {
         for (int j = 0; j <= k; ++j) {
             size_t min_word_len = lhs.get_min_word_len(i) + rhs.get_min_word_len(j);
             result.update_min_word_len(j, min_word_len);
-            if (rhs.is_xword_in_l(j) && i + j <= k) {
+            int cnt = std::min(i + j, k);
+            if (rhs.is_xword_in_l(j)) {
                 min_word_len = lhs.get_min_word_len(i) + j;
-                result.update_min_word_len(i + j, min_word_len);
+                result.update_min_word_len(cnt, min_word_len);
             }
             if (lhs.is_xword_in_l(i) && rhs.is_xword_in_l(j) && i + j <= k) {
                 result.update_xword_in_l(i + j);
@@ -68,7 +69,8 @@ DynamicState iteration(const DynamicState& ds) {
         for (int j = 0; j <= k; ++j) {
             if (result.is_xword_in_l(j)) {
                 size_t min_word_len = ds.get_min_word_len(i) + j;
-                result.update_min_word_len(j, min_word_len);
+                int cnt = std::min(i + j, k);
+                result.update_min_word_len(cnt, min_word_len);
             }
         }
     }
