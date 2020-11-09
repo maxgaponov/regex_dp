@@ -34,3 +34,25 @@ TEST(test_dynamic, construct_nx) {
         EXPECT_EQ(ds.is_xword_in_l(i), false);
     }
 }
+
+TEST(test_dynamic, update_min_word_len) {
+    DynamicState ds(x, k);
+    ds.update_min_word_len(0, 5);
+    ds.update_min_word_len(1, 7);
+    EXPECT_EQ(ds.get_min_word_len(0), 5);
+    EXPECT_EQ(ds.get_min_word_len(1), 7);
+    for (int i = 2; i <= k; ++i) {
+        EXPECT_EQ(ds.get_min_word_len(i), (i == 0 ? 1 : DynamicState::INF));
+    }
+}
+
+TEST(test_dynamic, update_xword_in_l) {
+    DynamicState ds(x, k);
+    ds.update_xword_in_l(0);
+    ds.update_xword_in_l(k);
+    EXPECT_EQ(ds.is_xword_in_l(0), true);
+    EXPECT_EQ(ds.is_xword_in_l(k), true);
+    for (int i = 1; i < k; ++i) {
+        EXPECT_EQ(ds.is_xword_in_l(i), false);
+    }
+}
