@@ -8,7 +8,7 @@ DynamicState::DynamicState(char x, int k, char a)
     update_min_word_len(0, 1);
     if (x == a) {
         update_min_word_len(1, 1);
-        update_xword(1);
+        update_xword_in_l(1);
     }
 }
 
@@ -18,7 +18,7 @@ void DynamicState::update_min_word_len(int count, size_t value) {
     }
 }
 
-void DynamicState::update_xword(int len) {
+void DynamicState::update_xword_in_l(int len) {
     xword_in_l_[len] = true;
 }
 

@@ -6,7 +6,7 @@ public:
     DynamicState(char x, int k);
     DynamicState(char x, int k, char a);
     void update_min_word_len(int count, size_t value);
-    void update_xword(int count);
+    void update_xword_in_l(int len);
     size_t get_min_word_len(int count) const;
     bool is_xword_in_l(int len) const;
     char get_x() const;
