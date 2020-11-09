@@ -1,4 +1,4 @@
 #pragma once
 #include <string>
 
-size_t solve(const std::string rpn_regex, char x, int k);
+size_t solve(const std::string& rpn_regex, char x, int k);
