@@ -20,6 +20,7 @@
 mkdir build
 cd build
 ../install_deps.sh python3.6
+source PythonEnvironment/bin/activate
 cmake -DCMAKE_BUILD_TYPE=Debug ..
 make -j<num cores + 1>
 make regex_dp_coverage
